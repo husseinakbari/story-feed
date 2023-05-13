@@ -16,7 +16,7 @@ const StorySliders: FC<ISliderProps> = ({
 }) => {
   return (
     <div className="grid grid-flow-col gap-1">
-      {Array(totalSlide + 1)
+      {Array(totalSlide)
         .fill("x")
         .map((_, index) => (
           <ProgressBar
