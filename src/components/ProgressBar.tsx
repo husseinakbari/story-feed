@@ -5,16 +5,16 @@ interface IProgressBarProps {
   duration: number;
   isFill?: boolean;
   disabled?: boolean;
-  classname?: string;
-  onFinish?: () => void
+  className?: string;
+  onFinish?: () => void;
 }
 
 const ProgressBar: FC<IProgressBarProps> = ({
   duration,
   isFill,
   disabled,
-  classname,
-  onFinish
+  className,
+  onFinish,
 }) => {
   const [progress, setProgress] = useState<number>(0);
 
@@ -35,7 +35,7 @@ const ProgressBar: FC<IProgressBarProps> = ({
         if (progressPercentage < 1) {
           animationFrameId = requestAnimationFrame(animate);
         } else {
-            onFinish?.();
+          onFinish?.();
         }
       };
 
@@ -45,11 +45,12 @@ const ProgressBar: FC<IProgressBarProps> = ({
     return () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
+        setProgress(0);
       }
     };
-  }, [duration, isFill, disabled]);
+  }, [duration, isFill, disabled, onFinish]);
 
-  const containerCn = classNames(classname, "h-[3px] rounded-lg bg-gray-700");
+  const containerCn = classNames(className, "h-[3px] rounded-lg bg-gray-700");
 
   const progressBarStyles: React.CSSProperties = {
     width: isFill ? "100%" : `${progress * 100}%`,

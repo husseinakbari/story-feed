@@ -1,33 +1,30 @@
-import { FC, useState, useCallback } from "react";
+import { FC } from "react";
 import ProgressBar from "./ProgressBar";
 
 interface ISliderProps {
-  totalStory: number;
-  activeStory?: number;
+  totalSlide: number;
+  activeSlide?: number;
+  durationTime?: number;
+  onNextSlide: () => void;
 }
 
-const DURATION_TIME = 4000;
-
-const StorySliders: FC<ISliderProps> = ({ totalStory, activeStory = 0 }) => {
-  const [activeSlide, setActiveSlide] = useState(activeStory);
-
-  const nextAction = useCallback(() => {
-    if(activeSlide < totalStory) {
-      setActiveSlide(activeSlide + 1);
-    }
-  }, [activeSlide, setActiveSlide]);
-
+const StorySliders: FC<ISliderProps> = ({
+  totalSlide,
+  activeSlide = 0,
+  durationTime = 10000,
+  onNextSlide,
+}) => {
   return (
     <div className="grid grid-flow-col gap-1">
-      {Array(totalStory)
+      {Array(totalSlide + 1)
         .fill("x")
         .map((_, index) => (
           <ProgressBar
             key={index}
-            duration={DURATION_TIME}
+            duration={durationTime}
             isFill={index < activeSlide}
             disabled={index > activeSlide}
-            onFinish={nextAction}
+            onFinish={onNextSlide}
           />
         ))}
     </div>
