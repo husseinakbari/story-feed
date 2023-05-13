@@ -9,11 +9,11 @@ interface IStoriesModalProps {
 }
 
 const stories: string[] = [
-  "/src/assets/stories/story-1.jpeg",
-  "/src/assets/stories/story-2.jpeg",
-  "/src/assets/stories/story-3.jpeg",
-  "/src/assets/stories/story-4.jpeg",
-  "/src/assets/stories/story-5.jpeg",
+  "/images/story-1.jpeg",
+  "/images/story-2.jpeg",
+  "/images/story-3.jpeg",
+  "/images/story-4.jpeg",
+  "/images/story-5.jpeg",
 ];
 
 const StoriesModal: FC<IStoriesModalProps> = ({ onClose }) => {
